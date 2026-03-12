@@ -3,197 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MATLAB Full Exercise Set</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>MATLAB Exercises — Final Programming 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:       #f5f0e8;
-  --bg2:      #ede7d9;
-  --panel:    #ffffff;
-  --border:   #d6cdb8;
-  --ink:      #1a1208;
-  --muted:    #8a7f6a;
-  --accent:   #c45c1a;
-  --accent2:  #1a6e5c;
-  --accent3:  #1a3a6e;
-  --warn:     #8b1a1a;
-  --tag-bg:   rgba(196,92,26,0.1);
-  --shadow:   rgba(26,18,8,0.08);
+  --bg: #faf7f2;
+  --lines: #e8dfd0;
+  --ink: #1a1208;
+  --muted: #7a6a55;
+  --accent: #c0392b;
+  --accent2: #1a6b3a;
+  --border: #3d2b1f;
+  --hi-yellow: #ffe566;
+  --hi-green: #b8f0b8;
+  --hi-pink: #ffb3c6;
+  --hi-blue: #b3d9ff;
+  --hi-orange: #ffd0a0;
+  --hi-purple: #ddd0ff;
+  --sticky: #fffacd;
+  --code-bg: #1c1812;
+  --card-bg: #ffffff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(
+    transparent, transparent 27px,
+    var(--lines) 27px, var(--lines) 28px
+  );
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.6;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.75;
   min-height: 100vh;
 }
 
-/* graph paper bg */
+/* red margin line */
 body::before {
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.35;
-  pointer-events:none;
-  z-index:0;
+  content: '';
+  position: fixed;
+  left: 68px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(192,57,43,0.25);
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* ── STICKY NAV ── */
+/* ── TOPBAR ── */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: rgba(245,240,232,0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(250,247,242,0.96);
+  backdrop-filter: blur(8px);
   border-bottom: 2px solid var(--border);
-  padding: 10px 28px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.topbar-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 1px;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.progress-wrap {
+  padding: 8px 30px 8px 85px;
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: 1;
-  min-width: 180px;
-}
-
-.progress-track {
-  flex: 1;
-  height: 4px;
-  background: var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, var(--accent), var(--accent2));
-  border-radius: 4px;
-  transition: width 0.5s cubic-bezier(.4,0,.2,1);
-  width: 0%;
-}
-
-.progress-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-/* filter pills */
-.filters {
-  display: flex;
-  gap: 6px;
   flex-wrap: wrap;
-  align-items: center;
 }
 
-.filter-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 1px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
+.site-title {
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.nav-tab {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 2px 11px;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  border-bottom: none;
+  transition: background 0.12s;
+  position: relative;
+  top: 2px;
+}
+.nav-tab:hover { background: #fdf0b0; }
+.nav-tab.active { background: var(--hi-yellow); }
+
+.diff-filter {
+  margin-left: auto;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.diff-label {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.diff-btn {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  padding: 2px 10px;
+  border: 1.5px dashed var(--muted);
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  transition: all 0.15s;
+  border-radius: 20px;
+  transition: all 0.12s;
 }
-.filter-btn:hover, .filter-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
+.diff-btn:hover { background: #f0e8d8; }
+.diff-btn.on-easy   { background: var(--hi-green);  border-color: var(--accent2); color: var(--accent2); border-style: solid; }
+.diff-btn.on-med    { background: var(--hi-yellow); border-color: #9a6800;        color: #6a4800;        border-style: solid; }
+.diff-btn.on-hard   { background: var(--hi-orange); border-color: #b04000;        color: #7a2c00;        border-style: solid; }
+.diff-btn.on-boss   { background: var(--hi-pink);   border-color: var(--accent);  color: var(--accent);  border-style: solid; }
 
 /* ── WRAPPER ── */
 .wrapper {
-  position: relative;
-  z-index: 1;
-  max-width: 1000px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 50px 24px 100px;
+  padding: 44px 40px 120px 96px;
+  position: relative;
 }
 
 /* ── HEADER ── */
-header {
-  margin-bottom: 60px;
-  border-left: 4px solid var(--accent);
-  padding-left: 24px;
+.page-header {
+  margin-bottom: 44px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px dashed var(--muted);
 }
 
-.lab-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--muted);
-  text-transform: uppercase;
+.course-tag {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  background: var(--hi-blue);
+  border: 1.5px solid #2c6080;
+  padding: 1px 10px;
+  border-radius: 3px;
   margin-bottom: 10px;
+  transform: rotate(-1.2deg);
+  color: #1a3a50;
 }
 
-h1 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(40px, 7vw, 72px);
-  line-height: 1;
+.page-header h1 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(34px, 5.5vw, 58px);
+  font-weight: 700;
+  line-height: 1.1;
   color: var(--ink);
-  letter-spacing: -2px;
 }
 
-h1 em {
-  font-style: normal;
-  color: var(--accent);
+.page-header h1 .hl { background: var(--hi-yellow); padding: 0 3px; }
+
+.page-header .sub {
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--muted);
+  font-style: italic;
 }
 
-.header-meta {
-  margin-top: 16px;
+.hand-note {
+  font-family: 'Caveat', cursive;
   font-size: 14px;
-  color: var(--muted);
-  font-family: 'DM Mono', monospace;
-}
-
-.stats {
-  display: flex;
-  gap: 36px;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
-.stat { display: flex; flex-direction: column; gap: 0px; }
-.stat-n {
-  font-family: 'Syne', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
   color: var(--accent);
-  line-height: 1;
-}
-.stat-l {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--muted);
-  text-transform: uppercase;
+  margin-top: 6px;
 }
 
 /* ── SECTION ── */
@@ -201,1162 +188,1182 @@ h1 em {
 
 .sec-header {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: baseline;
+  gap: 10px;
   margin-bottom: 18px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   border-bottom: 2px solid var(--border);
 }
 
-.sec-part {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 2px;
+.sec-label {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .sec-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Caveat', cursive;
   font-size: 20px;
-  font-weight: 800;
-  color: var(--ink);
-  flex: 1;
+  font-weight: 600;
 }
 
-.diff {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  padding: 3px 9px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.d-std  { background: rgba(26,110,92,0.12);  color: var(--accent2); border:1px solid rgba(26,110,92,0.25); }
-.d-med  { background: rgba(26,58,110,0.12);  color: var(--accent3); border:1px solid rgba(26,58,110,0.25); }
-.d-hard { background: rgba(196,92,26,0.12);  color: var(--accent);  border:1px solid rgba(196,92,26,0.25); }
-.d-boss { background: rgba(139,26,26,0.12);  color: var(--warn);    border:1px solid rgba(139,26,26,0.25); }
-
-/* ── CARD ── */
-.cards { display: flex; flex-direction: column; gap: 8px; }
-
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-left: 3px solid transparent;
-  padding: 16px 20px;
-  transition: border-left-color 0.2s, box-shadow 0.2s, transform 0.15s;
-  box-shadow: 0 1px 3px var(--shadow);
-  display: none; /* hidden until filter applied */
-}
-
-.card.visible { display: block; }
-
-.card:hover {
-  border-left-color: var(--accent);
-  box-shadow: 0 4px 16px var(--shadow);
-  transform: translateX(3px);
-}
-
-.card.done {
-  border-left-color: var(--accent2) !important;
-  opacity: 0.5;
-}
-.card.done .c-title { text-decoration: line-through; color: var(--muted); }
-
-.c-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.c-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
+.sec-count {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
   color: var(--muted);
-  min-width: 32px;
-  padding-top: 2px;
-  flex-shrink: 0;
+  margin-left: auto;
 }
 
-.c-body { flex: 1; }
+/* ── EXERCISE CARD ── */
+.ex-list { display: flex; flex-direction: column; gap: 14px; }
 
-.c-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.5;
-}
-
-.c-hint {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  background: var(--bg2);
-  border-left: 3px solid var(--border);
-  padding: 7px 12px;
-  margin-top: 10px;
-  display: none;
-  line-height: 1.6;
-}
-
-.card:hover .c-hint { display: block; }
-
-.c-tags {
-  display: flex;
-  gap: 5px;
-  margin-top: 7px;
-  flex-wrap: wrap;
-}
-
-.c-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 1px;
-  padding: 2px 7px;
-  background: var(--tag-bg);
-  color: var(--accent);
-  border-radius: 2px;
-  text-transform: uppercase;
-}
-.c-tag.t2 { background: rgba(26,110,92,0.1); color: var(--accent2); }
-.c-tag.t3 { background: rgba(26,58,110,0.1); color: var(--accent3); }
-
-.c-check {
-  width: 20px;
-  height: 20px;
+.ex-card {
+  background: var(--card-bg);
   border: 1.5px solid var(--border);
   border-radius: 3px;
-  cursor: pointer;
-  flex-shrink: 0;
+  padding: 16px 20px 14px;
+  box-shadow: 2px 3px 0 rgba(61,43,31,0.1);
+  position: relative;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.ex-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 5px 0 rgba(61,43,31,0.14);
+}
+
+/* top colour bar by difficulty */
+.ex-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+.ex-card[data-diff="standard"]::before { background: var(--hi-green); }
+.ex-card[data-diff="medium"]::before   { background: var(--hi-yellow); }
+.ex-card[data-diff="hard"]::before     { background: var(--hi-orange); }
+.ex-card[data-diff="challenge"]::before{ background: var(--hi-pink); }
+
+/* margin annotation */
+.margin-note {
+  position: absolute;
+  left: -82px;
+  top: 16px;
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  color: var(--accent);
+  width: 68px;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.ex-meta {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-  margin-top: 1px;
-}
-.c-check:hover { border-color: var(--accent2); }
-.c-check.checked {
-  background: var(--accent2);
-  border-color: var(--accent2);
-}
-.c-check.checked::after {
-  content: '✓';
-  font-size: 11px;
-  color: white;
-  font-weight: bold;
-  line-height: 1;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
-/* challenge callout */
-.challenge-banner {
-  background: linear-gradient(135deg, rgba(139,26,26,0.06), rgba(196,92,26,0.06));
-  border: 1px solid rgba(139,26,26,0.2);
-  border-left: 4px solid var(--warn);
-  padding: 10px 16px;
-  margin-bottom: 10px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--warn);
-  text-transform: uppercase;
+.ex-id {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  min-width: 36px;
 }
 
-code {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  background: var(--bg2);
+.diff-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 12px;
+  padding: 0px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  border: 1px solid;
+}
+.diff-tag.standard { background: var(--hi-green);  border-color: var(--accent2); color: var(--accent2); }
+.diff-tag.medium   { background: var(--hi-yellow); border-color: #9a6800;        color: #6a4800; }
+.diff-tag.hard     { background: var(--hi-orange); border-color: #b04000;        color: #7a2c00; }
+.diff-tag.challenge{ background: var(--hi-pink);   border-color: var(--accent);  color: var(--accent); }
+
+.ex-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+
+.ex-body {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+.ex-body code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: rgba(61,43,31,0.07);
   padding: 1px 5px;
-  border-radius: 2px;
-  color: var(--accent3);
+  border-radius: 3px;
 }
 
+.ex-body pre {
+  background: var(--code-bg);
+  color: #d4c9b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 12px 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 9px 0;
+  border-left: 3px solid var(--accent);
+}
+
+.ex-body pre .c { color: #6a8a6a; font-style: italic; }
+
+.ex-body ul, .ex-body ol {
+  margin: 7px 0 0 22px;
+}
+
+/* hint */
+.hint-toggle {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  color: var(--accent2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline dotted;
+}
+.hint-toggle:hover { color: var(--accent); }
+
+.hint-box {
+  display: none;
+  margin-top: 8px;
+  background: var(--sticky);
+  border: 1.5px dashed #c8b840;
+  border-radius: 4px;
+  padding: 9px 13px;
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: #4a4010;
+  position: relative;
+  transform: rotate(0.2deg);
+}
+.hint-box::before {
+  content: '📌';
+  position: absolute;
+  top: -10px; left: 8px;
+  font-size: 16px;
+}
+.hint-box.open { display: block; }
+
+/* no results */
+.no-results {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: var(--muted);
+  text-align: center;
+  padding: 60px;
+  display: none;
+}
+
+/* footer */
 footer {
   text-align: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
   color: var(--muted);
-  letter-spacing: 2px;
-  margin-top: 60px;
-  padding-top: 24px;
-  border-top: 2px solid var(--border);
+  padding: 36px;
+  border-top: 1.5px dashed var(--muted);
+  margin-top: 30px;
 }
+footer em { color: var(--accent); font-style: normal; }
 
-@media(max-width:600px){
-  .topbar{ padding: 8px 16px; gap:10px; }
-  .stats { gap: 20px; }
+/* responsive */
+@media (max-width: 700px) {
+  body::before { display: none; }
+  .wrapper { padding: 30px 16px 80px 16px; }
+  .margin-note { display: none; }
+  .topbar { padding: 8px 16px; }
+  .diff-filter { margin-left: 0; }
 }
 </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
 <div class="topbar">
-  <div class="topbar-title">MATLAB LABS — CSE001</div>
-  <div class="progress-wrap">
-    <div class="progress-track"><div class="progress-fill" id="pFill"></div></div>
-    <span class="progress-text" id="pText">0 / 0</span>
+  <span class="site-title">MATLAB Exercises</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterPart('all',this)">All</button>
+    <button class="nav-tab" onclick="filterPart('A',this)">A</button>
+    <button class="nav-tab" onclick="filterPart('B',this)">B</button>
+    <button class="nav-tab" onclick="filterPart('C',this)">C</button>
+    <button class="nav-tab" onclick="filterPart('D',this)">D</button>
+    <button class="nav-tab" onclick="filterPart('E',this)">E</button>
+    <button class="nav-tab" onclick="filterPart('F',this)">F</button>
+    <button class="nav-tab" onclick="filterPart('G',this)">G</button>
+    <button class="nav-tab" onclick="filterPart('H',this)">H</button>
+    <button class="nav-tab" onclick="filterPart('X',this)">🔥</button>
   </div>
-  <div class="filters">
-    <button class="filter-btn active" onclick="filter('all',this)">All</button>
-    <button class="filter-btn" onclick="filter('standard',this)">Standard</button>
-    <button class="filter-btn" onclick="filter('medium',this)">Medium</button>
-    <button class="filter-btn" onclick="filter('hard',this)">Hard</button>
-    <button class="filter-btn" onclick="filter('challenge',this)">Challenge</button>
+  <div class="diff-filter">
+    <span class="diff-label">filter:</span>
+    <button class="diff-btn" onclick="filterDiff('all',this)">all</button>
+    <button class="diff-btn" onclick="filterDiff('standard',this)">easy</button>
+    <button class="diff-btn" onclick="filterDiff('medium',this)">medium</button>
+    <button class="diff-btn" onclick="filterDiff('hard',this)">hard</button>
+    <button class="diff-btn" onclick="filterDiff('challenge',this)">challenge 💀</button>
   </div>
 </div>
 
 <div class="wrapper">
 
-<header>
-  <div class="lab-tag">· Spring 2026</div>
-  <h1>MATLAB<br><em>Exercise Set</em></h1>
-  <div class="header-meta">CSE001 — Level 000 · Full coverage of all lab parts A → H</div>
-  <div class="stats">
-    <div class="stat"><span class="stat-n" id="totalCount">—</span><span class="stat-l">Exercises</span></div>
-    <div class="stat"><span class="stat-n">8</span><span class="stat-l">Parts</span></div>
-    <div class="stat"><span class="stat-n">4</span><span class="stat-l">Difficulty levels</span></div>
-  </div>
-</header>
-
-<!-- ══════════════════════════════════════════════
-     PART A — BASIC OPERATIONS
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART A</span>
-    <span class="sec-title">Basic Operations</span>
-    <span class="diff d-std">Standard</span>
-  </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="A1">
-      <div class="c-row">
-        <span class="c-num">A.01</span>
-        <div class="c-body">
-          <div class="c-title">Evaluate <code>3 + 4 * 2 - (6 / 3)^2</code> step by step in MATLAB and predict the result before running it. What does <code>ans</code> contain after each line?</div>
-          <div class="c-hint">Remember: parentheses first, then exponents, then × ÷, then + −. <code>ans</code> only updates when the result is not assigned to a named variable.</div>
-          <div class="c-tags"><span class="c-tag">precedence</span><span class="c-tag">ans</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="A2">
-      <div class="c-row">
-        <span class="c-num">A.02</span>
-        <div class="c-body">
-          <div class="c-title">Define <code>x = 8.3</code> and <code>y = 2.4</code>. Compute: <code>(x^2 + y^2) / (x - y)</code>, <code>sqrt(x*y)</code>, and <code>x^y</code>.</div>
-          <div class="c-hint">Use <code>sqrt()</code> for square root. No implicit multiplication: <code>2x</code> is invalid, you must write <code>2*x</code>.</div>
-          <div class="c-tags"><span class="c-tag">variables</span><span class="c-tag">math</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="A3">
-      <div class="c-row">
-        <span class="c-num">A.03</span>
-        <div class="c-body">
-          <div class="c-title">Compute the ellipse perimeter approximation: <code>P ≈ 2π · sqrt((a²+b²)/2)</code> for <code>a=5</code>, <code>b=3</code>. Use <code>pi</code> and semicolons to hide intermediate outputs.</div>
-          <div class="c-hint">Use <code>pi</code> (built-in). Semicolons suppress output. Only show the final result <code>P</code> by typing it without a semicolon.</div>
-          <div class="c-tags"><span class="c-tag">semicolons</span><span class="c-tag">pi</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="A4">
-      <div class="c-row">
-        <span class="c-num">A.04</span>
-        <div class="c-body">
-          <div class="c-title">Compute <code>sin(pi/6)</code>, <code>cos(pi/3)</code>, <code>tan(pi/4)</code> in radians. Then compute the same angles in degrees using <code>sind</code>, <code>cosd</code>, <code>tand</code>.</div>
-          <div class="c-hint">MATLAB's <code>sin()</code> takes radians. The <code>d</code>-suffix versions (<code>sind</code>, <code>cosd</code>) accept degrees directly.</div>
-          <div class="c-tags"><span class="c-tag">trig</span><span class="c-tag">radian</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="A5">
-      <div class="c-row">
-        <span class="c-num">A.05</span>
-        <div class="c-body">
-          <div class="c-title">Compute <code>asin(0.5)</code> in radians. Convert the result to degrees using both a formula and the <code>rad2deg()</code> function. Verify with <code>asind(0.5)</code>.</div>
-          <div class="c-hint">Degrees = radians × (180/π). Alternatively: <code>rad2deg(asin(0.5))</code>. Compare all three methods — results should be identical.</div>
-          <div class="c-tags"><span class="c-tag">inverse trig</span><span class="c-tag">conversion</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part A</div>
-
-    <div class="card visible" data-diff="hard" data-id="A6">
-      <div class="c-row">
-        <span class="c-num">A.06</span>
-        <div class="c-body">
-          <div class="c-title">MATLAB is case-sensitive. Predict the outputs of: <code>A=5; a=3; B=A+a; b=a-A</code>. Now reassign <code>a = A*2</code> and recompute <code>B</code>. Does <code>B</code> change? Why or why not?</div>
-          <div class="c-hint">In MATLAB, variables are not linked. Reassigning <code>a</code> does not retroactively change <code>B</code> — <code>B</code> was computed at the moment of assignment and holds that value until explicitly recomputed.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">case-sensitivity</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="A7">
-      <div class="c-row">
-        <span class="c-num">A.07</span>
-        <div class="c-body">
-          <div class="c-title">Without a calculator, predict the exact value of <code>floor(exp(1)*10^4)/10^4</code> in MATLAB. Then verify. What technique does this implement?</div>
-          <div class="c-hint">This manually truncates <code>e</code> to 4 decimal places. <code>exp(1)</code> = e ≈ 2.71828... <code>floor()</code> rounds down. The pattern <code>floor(x * 10^n) / 10^n</code> is a truncation trick.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">floor</span><span class="c-tag">exp</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+<!-- HEADER -->
+<div class="page-header">
+  <div class="course-tag">Zagazig University · Final Programming 2026</div>
+  <h1>MATLAB<br><span class="hl">Practice Exercises</span></h1>
+  <p class="sub">Covers Parts A–H from the lab manual + some bonus challenges<br>made for Prep Engineering students</p>
+  <p class="hand-note">← click the hint if you're really stuck lol</p>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART B — COMPLEX NUMBERS
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART B</span>
-    <span class="sec-title">Complex Numbers</span>
-    <span class="diff d-std">Standard</span>
+<div class="no-results" id="noResults">nothing found for that filter 🤷</div>
+
+<!-- ═══ PART A ═══ -->
+<div class="section" data-part="A">
+<div class="sec-header">
+  <span class="sec-label">Part A</span>
+  <span class="sec-title">Basic Operations</span>
+  <span class="sec-count">7 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="A">
+  <div class="margin-note">A.01</div>
+  <div class="ex-meta"><span class="ex-id">A.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Order of operations + ans variable</div>
+  <div class="ex-body">
+    <p>Evaluate this expression and predict the result <em>before</em> running:</p>
+    <pre>3 + 4 * 2 - (6/3)^2</pre>
+    <p>What is stored in <code>ans</code> after running it? Now assign the result to <code>x</code> — does <code>ans</code> update? Why or why not?</p>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="B1">
-      <div class="c-row">
-        <span class="c-num">B.01</span>
-        <div class="c-body">
-          <div class="c-title">Compute <code>a = (1+i)^4</code>. Display the result. Extract the real and imaginary parts using <code>real()</code> and <code>imag()</code>. Does the imaginary part surprise you?</div>
-          <div class="c-hint">Expand <code>(1+i)^4</code> by hand first: <code>(1+i)^2 = 2i</code>, so <code>(1+i)^4 = (2i)^2 = -4</code>. So the result should be purely real.</div>
-          <div class="c-tags"><span class="c-tag">complex</span><span class="c-tag">real/imag</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="B2">
-      <div class="c-row">
-        <span class="c-num">B.02</span>
-        <div class="c-body">
-          <div class="c-title">Given <code>a = 5 + 3i</code>: find its magnitude with <code>abs()</code>, its angle in both radians and degrees, and separate its real and imaginary parts.</div>
-          <div class="c-hint">Magnitude = sqrt(5²+3²). Angle: <code>angle(a)</code> returns radians → multiply by 180/π for degrees, or use <code>angle(a)*180/pi</code>.</div>
-          <div class="c-tags"><span class="c-tag">abs</span><span class="c-tag">angle</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="B3">
-      <div class="c-row">
-        <span class="c-num">B.03</span>
-        <div class="c-body">
-          <div class="c-title">Let <code>z1 = 3+4i</code> and <code>z2 = 1-2i</code>. Compute <code>z1+z2</code>, <code>z1*z2</code>, <code>z1/z2</code>, and <code>z1^2</code>. Verify the division result manually.</div>
-          <div class="c-hint">For manual verification of <code>z1/z2</code>: multiply numerator and denominator by the conjugate of <code>z2</code>. Use <code>conj(z2)</code> in MATLAB to get the conjugate.</div>
-          <div class="c-tags"><span class="c-tag">arithmetic</span><span class="c-tag">conj</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part B</div>
-
-    <div class="card visible" data-diff="medium" data-id="B4">
-      <div class="c-row">
-        <span class="c-num">B.04</span>
-        <div class="c-body">
-          <div class="c-title">Euler's formula: verify that <code>exp(i*pi) + 1 == 0</code> in MATLAB. Why might the result not be exactly zero? How would you check it numerically?</div>
-          <div class="c-hint">Floating-point precision means <code>exp(i*pi)</code> ≈ <code>-1 + 1.2246e-16i</code>. Use <code>abs(exp(i*pi)+1) < 1e-10</code> as a numerical equality check.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">euler</span><span class="c-tag">floating-point</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="B5">
-      <div class="c-row">
-        <span class="c-num">B.05</span>
-        <div class="c-body">
-          <div class="c-title">Using only <code>abs()</code>, <code>angle()</code>, <code>exp()</code>, and basic arithmetic — reconstruct a complex number from its polar form. Given <code>r=5</code>, <code>θ=pi/3</code>: compute <code>z = r*exp(i*θ)</code> and verify by checking abs and angle.</div>
-          <div class="c-hint">Polar form: <code>z = r·e^(iθ) = r(cos θ + i·sin θ)</code>. After computing, confirm: <code>abs(z)</code> should equal <code>r</code> and <code>angle(z)</code> should equal <code>θ</code>.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">polar form</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">MATLAB follows standard PEMDAS. ans only updates when a result is NOT assigned to a named variable. x = 5 does NOT update ans. Answer: 7.</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART C — MATRICES
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART C</span>
-    <span class="sec-title">Matrices</span>
-    <span class="diff d-std">Standard</span>
+<div class="ex-card" data-diff="standard" data-part="A">
+  <div class="margin-note">A.02</div>
+  <div class="ex-meta"><span class="ex-id">A.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Variables and arithmetic</div>
+  <div class="ex-body">
+    <p>Set <code>x = 8.3</code> and <code>y = 2.4</code>. Compute:</p>
+    <ul>
+      <li>(x² + y²) / (x − y)</li>
+      <li>√(x·y)</li>
+      <li>x^y</li>
+    </ul>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="C1">
-      <div class="c-row">
-        <span class="c-num">C.01</span>
-        <div class="c-body">
-          <div class="c-title">Create row vector <code>A = [0 -1 5 10]</code>. Access element 3. Then create <code>B = [0:0.5:5]</code> using the colon operator and check its length with <code>length()</code>.</div>
-          <div class="c-hint">Indexing in MATLAB starts at 1, not 0. <code>A(3)</code> gives the third element. <code>0:0.5:5</code> creates a vector from 0 to 5 in steps of 0.5.</div>
-          <div class="c-tags"><span class="c-tag">vector</span><span class="c-tag">indexing</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="C2">
-      <div class="c-row">
-        <span class="c-num">C.02</span>
-        <div class="c-body">
-          <div class="c-title">Create the 4×4 matrix with values 1–16 (row by row). Extract: element at row 3 col 2, the entire second row, the third column, and the top-left 2×2 submatrix.</div>
-          <div class="c-hint">Use <code>A = [1 2 3 4; 5 6 7 8; ...]</code>. Access: <code>A(3,2)</code>, <code>A(2,:)</code>, <code>A(:,3)</code>, <code>A(1:2,1:2)</code>.</div>
-          <div class="c-tags"><span class="c-tag">matrix</span><span class="c-tag">slicing</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="C3">
-      <div class="c-row">
-        <span class="c-num">C.03</span>
-        <div class="c-body">
-          <div class="c-title">Create the three row vectors from the lab example (<code>a</code>, <code>b</code>, <code>c</code>). Form a 3×5 matrix with them as rows, then a 5×3 matrix with them as columns.</div>
-          <div class="c-hint">Rows: <code>[a; b; c]</code>. Columns: <code>[a' b' c']</code> (transpose each vector first). Confirm sizes with <code>size()</code>.</div>
-          <div class="c-tags"><span class="c-tag">matrix building</span><span class="c-tag">transpose</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="C4">
-      <div class="c-row">
-        <span class="c-num">C.04</span>
-        <div class="c-body">
-          <div class="c-title">Create matrix <code>B = [1 3 3; 1 4 3; 1 3 4]</code>. Find its inverse with <code>inv(B)</code> and its determinant with <code>det(B)</code>. Verify the inverse by computing <code>B * inv(B)</code>.</div>
-          <div class="c-hint">The result of <code>B * inv(B)</code> should be the identity matrix <code>eye(3)</code>. Small floating-point errors (e.g., 1e-15) are normal and expected.</div>
-          <div class="c-tags"><span class="c-tag">inverse</span><span class="c-tag">determinant</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="C5">
-      <div class="c-row">
-        <span class="c-num">C.05</span>
-        <div class="c-body">
-          <div class="c-title">For matrices <code>A = [1 2 3; 4 5 6; 7 8 9]</code> and <code>B = [1 3 3; 1 4 3; 1 3 4]</code>: compute element-wise division <code>A./B</code>, element-wise multiplication <code>A.*B</code>, and element-wise square <code>A.^2</code>.</div>
-          <div class="c-hint">The dot before an operator makes it element-wise. <code>A*B</code> = matrix multiply, <code>A.*B</code> = multiply each pair of corresponding elements.</div>
-          <div class="c-tags"><span class="c-tag">element-wise</span><span class="c-tag">dot ops</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part C</div>
-
-    <div class="card visible" data-diff="medium" data-id="C6">
-      <div class="c-row">
-        <span class="c-num">C.06</span>
-        <div class="c-body">
-          <div class="c-title">Prove that matrix addition is commutative and associative: define three random 3×3 matrices A, B, C using <code>randi(10,3,3)</code> and verify <code>A+B == B+A</code> and <code>A+(B+C) == (A+B)+C</code> element-by-element.</div>
-          <div class="c-hint">Use <code>isequal(A+B, B+A)</code> for a clean true/false check. For element-by-element comparison: <code>all(all(A+B == B+A))</code>.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">properties</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="C7">
-      <div class="c-row">
-        <span class="c-num">C.07</span>
-        <div class="c-body">
-          <div class="c-title">Create a 5×5 random integer matrix. Without any loop: zero out all elements below the main diagonal, replace the diagonal with ones, and leave the upper triangle unchanged. Display the result.</div>
-          <div class="c-hint">Use <code>triu(A)</code> for the upper triangle. Replace the diagonal: <code>result = triu(A,1) + eye(5)</code> where <code>triu(A,1)</code> gets strictly above the diagonal.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">triu</span><span class="c-tag">eye</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="C8">
-      <div class="c-row">
-        <span class="c-num">C.08</span>
-        <div class="c-body">
-          <div class="c-title">Verify that <code>(AB)ᵀ = BᵀAᵀ</code> using two random 3×3 matrices. Also check that <code>(A+B)ᵀ = Aᵀ+Bᵀ</code>. What does this tell you about the transpose operation?</div>
-          <div class="c-hint">Transpose in MATLAB: <code>A'</code> (or <code>A.'</code> for non-conjugate). Use <code>isequal()</code> but note floating-point: better to check <code>norm((A*B)' - B'*A') < 1e-10</code>.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">transpose identity</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">No implicit multiplication — 2x is a syntax error, write 2*x. Use sqrt() for square roots. The ^ operator is for powers.</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART D — APPLICATIONS OF MATRICES
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART D</span>
-    <span class="sec-title">Matrix Applications</span>
-    <span class="diff d-med">Medium</span>
+<div class="ex-card" data-diff="standard" data-part="A">
+  <div class="margin-note">A.03</div>
+  <div class="ex-meta"><span class="ex-id">A.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Ellipse perimeter + semicolons</div>
+  <div class="ex-body">
+    <p>For an ellipse with semi-axes a=5 and b=3, the approximate perimeter is:</p>
+    <pre>P = 2 * pi * sqrt((a^2 + b^2) / 2)</pre>
+    <p>Write this so a and b are defined silently (no output) but P prints. What is P?</p>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="D1">
-      <div class="c-row">
-        <span class="c-num">D.01</span>
-        <div class="c-body">
-          <div class="c-title">For <code>y = x⁴ + 3x² + 5x - 6</code>: find the value at <code>x=3</code> using <code>polyval()</code>, evaluate it at <code>x = [1,3,4,5,6]</code>, and find all roots with <code>roots()</code>.</div>
-          <div class="c-hint">Enter coefficients highest-to-lowest: <code>p = [1 0 3 5 -6]</code> (note the zero for the missing x³ term). Then <code>polyval(p, 3)</code> and <code>roots(p)</code>.</div>
-          <div class="c-tags"><span class="c-tag">polynomial</span><span class="c-tag">polyval</span><span class="c-tag">roots</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="D2">
-      <div class="c-row">
-        <span class="c-num">D.02</span>
-        <div class="c-body">
-          <div class="c-title">Given roots <code>x = -3</code> and <code>x = 2</code>: use <code>poly()</code> to reconstruct the polynomial. Verify by finding the roots of the result with <code>roots()</code>.</div>
-          <div class="c-hint"><code>poly([-3 2])</code> returns the coefficients. The result should be <code>[1 1 -6]</code> representing <code>x²+x-6</code>. Then <code>roots(ans)</code> should give back -3 and 2.</div>
-          <div class="c-tags"><span class="c-tag">poly</span><span class="c-tag">roots</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="D3">
-      <div class="c-row">
-        <span class="c-num">D.03</span>
-        <div class="c-body">
-          <div class="c-title">Solve the linear system from the lab using matrix division (<code>A\b</code>) AND using <code>inv(A)*b</code>. Compare the results and verify by substituting back.</div>
-          <div class="c-hint">System: X₁-4X₂+3X₃=11, 3X₁+X₂+2X₃=1, X₁+5X₂-X₃=4. Check: compute <code>A*x - b</code> — it should be near the zero vector.</div>
-          <div class="c-tags"><span class="c-tag">linear system</span><span class="c-tag">backslash</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part D</div>
-
-    <div class="card visible" data-diff="medium" data-id="D4">
-      <div class="c-row">
-        <span class="c-num">D.04</span>
-        <div class="c-body">
-          <div class="c-title">For <code>y = x³ - 2x² + x</code>, evaluate at <code>x = -2,-1,0,1,2,3,4</code> using element-wise operations (no loop, no <code>polyval</code>). Then confirm with <code>polyval([1 -2 1 0], x)</code>.</div>
-          <div class="c-hint">Define <code>x = [-2 -1 0 1 2 3 4]</code> then <code>y = x.^3 - 2*x.^2 + x</code>. The dot operators apply the polynomial element-by-element.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">element-wise</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="D5">
-      <div class="c-row">
-        <span class="c-num">D.05</span>
-        <div class="c-body">
-          <div class="c-title">A resistor circuit gives: 2I₁+I₂=10, I₁-3I₂+2I₃=5, I₂+4I₃=8. Solve for all currents. Now perturb the right-hand side by +0.01 on each equation and measure how much the solution changes. What does a large change indicate?</div>
-          <div class="c-hint">This explores <strong>matrix conditioning</strong>. Check <code>cond(A)</code> — a large condition number means small input changes cause large output changes (ill-conditioned system).</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">conditioning</span><span class="c-tag">circuits</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Add a semicolon after a = 5; and b = 3; to suppress them. Leave P without a semicolon so it prints. Answer should be around 25.9.</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART E — PLOTTING
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART E</span>
-    <span class="sec-title">Plotting</span>
-    <span class="diff d-std">Standard</span>
+<div class="ex-card" data-diff="standard" data-part="A">
+  <div class="margin-note">A.04</div>
+  <div class="ex-meta"><span class="ex-id">A.04</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Trig — radians vs degrees</div>
+  <div class="ex-body">
+    <p>Compute sin(30°), cos(60°), and tan(45°) using:</p>
+    <ul>
+      <li>radian functions (<code>sin</code>, <code>cos</code>, <code>tan</code>) — convert manually</li>
+      <li>degree functions (<code>sind</code>, <code>cosd</code>, <code>tand</code>)</li>
+    </ul>
+    <p style="margin-top:8px">Do both give the same results?</p>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="E1">
-      <div class="c-row">
-        <span class="c-num">E.01</span>
-        <div class="c-body">
-          <div class="c-title">Plot <code>s = 5·sin(3t+2) + 15t - 1</code> for <code>t = 0:0.1:5</code>. Add grid, x-label "time", y-label "speed", title "Speed Curve". Compare the plot to using only integer t values.</div>
-          <div class="c-hint">Use a fine step (0.1) for a smooth curve. Integer steps (0:5) give only 6 points and a jagged appearance. All formatting commands go after the <code>plot()</code> call.</div>
-          <div class="c-tags"><span class="c-tag">plot</span><span class="c-tag">labels</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="E2">
-      <div class="c-row">
-        <span class="c-num">E.02</span>
-        <div class="c-body">
-          <div class="c-title">Plot the capacitor discharge <code>v(t) = 10(1 - e^(-0.2t))</code> using both <code>plot</code> (with t=0:5:50) and <code>fplot</code> over [0,50]. Put them in separate figures using <code>figure</code>.</div>
-          <div class="c-hint">For fplot: <code>f = @(t) 10*(1-exp(-0.2*t)); fplot(f,[0 50])</code>. Use <code>figure</code> between the two plots to open a new window.</div>
-          <div class="c-tags"><span class="c-tag">fplot</span><span class="c-tag">figure</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="E3">
-      <div class="c-row">
-        <span class="c-num">E.03</span>
-        <div class="c-body">
-          <div class="c-title">Plot <code>f₁(t) = cos(2t)</code> and <code>f₂(t) = sin(t)/t</code> on the same figure using <code>hold on</code> for <code>t = 0:0.01:4π</code>. Add a legend and different line colors.</div>
-          <div class="c-hint">Note: <code>sin(t)./t</code> (element-wise division). At <code>t=0</code>, this gives NaN — MATLAB handles it gracefully in the plot. Use <code>legend('cos(2t)','sin(t)/t')</code>.</div>
-          <div class="c-tags"><span class="c-tag">hold on</span><span class="c-tag">legend</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="E4">
-      <div class="c-row">
-        <span class="c-num">E.04</span>
-        <div class="c-body">
-          <div class="c-title">Create a 2×2 subplot figure with: <code>sin(x)</code>, <code>cos(x)</code>, <code>sin(x).*cos(x)</code>, and <code>sin(x).^2 + cos(x).^2</code> — all over [0, 2π]. What does the last subplot tell you?</div>
-          <div class="c-hint">The last subplot is the Pythagorean identity: <code>sin²(x) + cos²(x) = 1</code> always. It should plot as a flat horizontal line at y=1. Use <code>subplot(2,2,n)</code> for each.</div>
-          <div class="c-tags"><span class="c-tag">subplot</span><span class="c-tag">identity</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="E5">
-      <div class="c-row">
-        <span class="c-num">E.05</span>
-        <div class="c-body">
-          <div class="c-title">Plot <code>f(x) = 5·e²·sin(0.4x)·cos(4x)</code> over [-20, 30] using both <code>plot</code> and <code>fplot</code>. Notice the difference in resolution. Which is smoother and why?</div>
-          <div class="c-hint"><code>fplot</code> adaptively increases resolution in regions of rapid change. <code>plot</code> with fixed <code>linspace</code> may miss rapid oscillations if the step is too large. Try <code>linspace(-20,30,100)</code> vs <code>linspace(-20,30,1000)</code>.</div>
-          <div class="c-tags"><span class="c-tag">fplot</span><span class="c-tag">resolution</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part E</div>
-
-    <div class="card visible" data-diff="medium" data-id="E6">
-      <div class="c-row">
-        <span class="c-num">E.06</span>
-        <div class="c-body">
-          <div class="c-title">Plot the parabola <code>y = -x² + 6x - 5</code>. Mark both roots as red circles (<code>'ro'</code>) and the vertex as a green star (<code>'g*'</code>). Set axes to cross at the origin and add all labels.</div>
-          <div class="c-hint">Roots via <code>roots([-1 6 -5])</code>. Vertex: x = -b/(2a) = 3, then y = f(3). Use <code>hold on</code> after the first plot, then plot the markers separately.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">markers</span><span class="c-tag">vertex</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="E7">
-      <div class="c-row">
-        <span class="c-num">E.07</span>
-        <div class="c-body">
-          <div class="c-title">Animate a travelling sine wave: plot <code>y = sin(x - k)</code> in a loop where <code>k</code> increases from 0 to 4π in steps of 0.1. Use <code>drawnow</code> and fix the axes so the window doesn't jump.</div>
-          <div class="c-hint">Fix axes with <code>axis([0 2*pi -1.5 1.5])</code> before the loop. Inside the loop: <code>plot(x,sin(x-k)); axis([...]); drawnow;</code>. Add a small pause with <code>pause(0.02)</code> to control speed.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">animation</span><span class="c-tag">drawnow</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="E8">
-      <div class="c-row">
-        <span class="c-num">E.08</span>
-        <div class="c-body">
-          <div class="c-title">Create a surface plot of <code>f(x,y) = sin(√(x²+y²))</code> over a -10 to 10 grid using <code>meshgrid</code> and <code>surf</code>. Add a colorbar, axis labels, and set the colormap to <code>parula</code>.</div>
-          <div class="c-hint"><code>[X,Y] = meshgrid(-10:0.3:10); Z = sin(sqrt(X.^2+Y.^2)); surf(X,Y,Z); colorbar; colormap parula;</code> — use dot operators on the grid variables.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">3D</span><span class="c-tag">meshgrid</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">30° in radians = 30 * pi/180 = pi/6. Or just use sind(30) directly. All answers should be clean: 0.5, 0.5, 1.0.</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART F — SYMBOLIC PROCESSING
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART F</span>
-    <span class="sec-title">Symbolic Processing</span>
-    <span class="diff d-med">Medium</span>
+<div class="ex-card" data-diff="standard" data-part="A">
+  <div class="margin-note">A.05</div>
+  <div class="ex-meta"><span class="ex-id">A.05</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Inverse trig + unit conversion</div>
+  <div class="ex-body">
+    <p>Compute <code>asin(0.5)</code> in radians, then convert to degrees using:</p>
+    <ol>
+      <li>The formula: multiply by 180/π</li>
+      <li>The built-in <code>rad2deg()</code></li>
+      <li>The shortcut <code>asind()</code></li>
+    </ol>
+    <p style="margin-top:8px">All three should give the same answer. What is it?</p>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="F1">
-      <div class="c-row">
-        <span class="c-num">F.01</span>
-        <div class="c-body">
-          <div class="c-title">Declare <code>syms x y</code>. Expand <code>F = x*(x+y)^2</code> and <code>G = sin(x+y)</code>. Then factor <code>x^2 + 4*x + 4</code>.</div>
-          <div class="c-hint">Use <code>expand(F)</code>, <code>expand(G)</code>, <code>factor(x^2+4*x+4)</code>. The expand of sin uses the angle-sum identity: <code>sin(x)cos(y)+cos(x)sin(y)</code>.</div>
-          <div class="c-tags"><span class="c-tag">syms</span><span class="c-tag">expand</span><span class="c-tag">factor</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="F2">
-      <div class="c-row">
-        <span class="c-num">F.02</span>
-        <div class="c-body">
-          <div class="c-title">Simplify <code>(x³+2x²+5x+10)/(x²+5)</code> using <code>simplify()</code>. Then convert between polynomial vector and symbolic form using <code>poly2sym()</code> and <code>sym2poly()</code>.</div>
-          <div class="c-hint">Result should simplify to <code>x+2</code>. For poly2sym: <code>poly2sym([1 0 -4])</code> gives <code>x^2-4</code>. For sym2poly: <code>sym2poly(x^2-4)</code> gives <code>[1 0 -4]</code>.</div>
-          <div class="c-tags"><span class="c-tag">simplify</span><span class="c-tag">poly2sym</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="F3">
-      <div class="c-row">
-        <span class="c-num">F.03</span>
-        <div class="c-body">
-          <div class="c-title">Find the roots of <code>x⁴ + 2x² + x = 5</code> using both <code>solve()</code> and <code>roots()</code>. Convert symbolic results to numerical with <code>double()</code>. Compare both methods.</div>
-          <div class="c-hint"><code>solve(x^4+2*x^2+x==5)</code> uses double <code>==</code> for equations. Wrap with <code>double()</code>. For roots: rearrange to <code>x^4+2*x^2+x-5=0</code>, then <code>roots([1 0 2 1 -5])</code>.</div>
-          <div class="c-tags"><span class="c-tag">solve</span><span class="c-tag">double</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="F4">
-      <div class="c-row">
-        <span class="c-num">F.04</span>
-        <div class="c-body">
-          <div class="c-title">Find the first and second partial derivatives of <code>f = x*y + sin(x*y)</code> w.r.t. x. Then substitute <code>x=1, y=2</code> and get a numerical value with <code>double(subs(...))</code>.</div>
-          <div class="c-hint"><code>df = diff(f)</code> (defaults to x, first alphabetical). <code>dff = diff(f,2)</code> for second derivative. Substitute: <code>double(subs(df,[x y],[1 2]))</code>.</div>
-          <div class="c-tags"><span class="c-tag">diff</span><span class="c-tag">subs</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="F5">
-      <div class="c-row">
-        <span class="c-num">F.05</span>
-        <div class="c-body">
-          <div class="c-title">Compute: indefinite integral of <code>2x</code>, definite integral of <code>x²</code> from 2 to 5, and <code>∫₀⁵ x·y² dy</code> (treating y as the integration variable).</div>
-          <div class="c-hint"><code>int(2*x)</code>, <code>int(x^2, 2, 5)</code>, <code>int(x*y^2, y, 0, 5)</code>. The third result should be <code>125*x/3</code> — a symbolic expression in x.</div>
-          <div class="c-tags"><span class="c-tag">int</span><span class="c-tag">integration</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="F6">
-      <div class="c-row">
-        <span class="c-num">F.06</span>
-        <div class="c-body">
-          <div class="c-title">Solve the differential equation <code>d²y/dx² + dy/dx + y = 5x</code> with initial conditions <code>y(0)=0</code>, <code>dy/dx(0)=0</code> using <code>dsolve()</code>.</div>
-          <div class="c-hint"><code>syms y(x); eq = diff(y,2)+diff(y)+y==5*x; Dy=diff(y); dsolve(eq, y(0)==0, Dy(0)==0)</code>. The solution will be a symbolic expression.</div>
-          <div class="c-tags"><span class="c-tag">dsolve</span><span class="c-tag">ODE</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part F</div>
-
-    <div class="card visible" data-diff="medium" data-id="F7">
-      <div class="c-row">
-        <span class="c-num">F.07</span>
-        <div class="c-body">
-          <div class="c-title">Find the intersection points of the two circles: <code>(x-3)²+(y-5)²=4</code> and <code>(x-5)²+(y-3)²=8</code>. Solve symbolically, convert to <code>double()</code>, and plot both circles with the intersection points marked.</div>
-          <div class="c-hint">Use <code>solve(eq1,eq2)</code> for both x and y. To plot a circle: parametrically <code>x=cx+r*cos(t), y=cy+r*sin(t)</code>. Mark intersection points with <code>'r*'</code> markers.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">solve 2 eqs</span><span class="c-tag">plot circles</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="F8">
-      <div class="c-row">
-        <span class="c-num">F.08</span>
-        <div class="c-body">
-          <div class="c-title">Symbolically differentiate <code>f(x) = x^x</code>. This requires logarithmic differentiation — MATLAB's <code>diff()</code> should handle it. Verify by evaluating numerically at <code>x=2</code> and comparing to a finite difference estimate.</div>
-          <div class="c-hint"><code>diff(x^x)</code> gives <code>x^x*(log(x)+1)</code>. Evaluate at x=2: <code>double(subs(df,x,2))</code> ≈ 6.773. Compare with <code>(2.001^2.001 - 2^2) / 0.001</code>.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">log diff</span><span class="c-tag">finite diff</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="F9">
-      <div class="c-row">
-        <span class="c-num">F.09</span>
-        <div class="c-body">
-          <div class="c-title">Use symbolic integration to find the area enclosed between <code>sin(x)</code> and <code>cos(x)</code> over one full period. Determine the intersection points symbolically first, then integrate.</div>
-          <div class="c-hint">Intersections: <code>solve(sin(x)==cos(x))</code>. Area = <code>int(abs(sin(x)-cos(x)), x1, x2)</code>. For abs of a symbolic expression use <code>int(sin(x)-cos(x), pi/4, 5*pi/4)</code> (where sin > cos).</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">area</span><span class="c-tag">intersection</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">The answer is 30°. All three methods are equivalent — just different ways to get there.</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART G — PROGRAMMING
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART G</span>
-    <span class="sec-title">Programming in MATLAB</span>
-    <span class="diff d-med">Medium</span>
+<div class="ex-card" data-diff="medium" data-part="A">
+  <div class="margin-note">A.06</div>
+  <div class="ex-meta"><span class="ex-id">A.06</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Case sensitivity + variable independence</div>
+  <div class="ex-body">
+    <p>Run this line by line and predict each output <em>before</em> running:</p>
+    <pre>A = 5; a = 3;
+B = A + a
+b = a - A
+a = A * 2;</pre>
+    <p>After the last line, is <code>B</code> still 8? Why or why not? How is this different from a spreadsheet?</p>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="G1">
-      <div class="c-row">
-        <span class="c-num">G.01</span>
-        <div class="c-body">
-          <div class="c-title">Write a script that asks the user for the number of cycles <code>n</code>. If <code>n > 0</code>, plot <code>sin(x)</code> over <code>n</code> cycles with labels. Otherwise, display "Invalid number of cycles."</div>
-          <div class="c-hint">Use <code>input('Enter cycles: ')</code>. The x range is <code>[0, 2*pi*n]</code>. Start script with <code>clear; clc; close all;</code> — this is always good practice.</div>
-          <div class="c-tags"><span class="c-tag">script</span><span class="c-tag">input</span><span class="c-tag">if/else</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="G2">
-      <div class="c-row">
-        <span class="c-num">G.02</span>
-        <div class="c-body">
-          <div class="c-title">Write a script that evaluates the piecewise function: <code>y = √(x²+1)</code> if x<0, <code>y = 3x+1</code> if 0≤x≤10, <code>y = 9·sin(5x-5)+31</code> if x>10. Test all three cases.</div>
-          <div class="c-hint">Use <code>if / elseif / else / end</code>. When a condition is met, MATLAB skips the remaining <code>elseif</code> branches — unlike using separate <code>if</code> blocks.</div>
-          <div class="c-tags"><span class="c-tag">piecewise</span><span class="c-tag">elseif</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="G3">
-      <div class="c-row">
-        <span class="c-num">G.03</span>
-        <div class="c-body">
-          <div class="c-title">Write a for loop to compute <code>S = Σ(k=1 to 5) k²/k!</code>. Display the running total after each iteration using <code>disp()</code>. Verify the final result against a direct calculation.</div>
-          <div class="c-hint">Initialize <code>s=0</code> before the loop. Inside: <code>s = s + k^2/factorial(k)</code>. Direct check: sum the five fractions manually: 1/1 + 4/2 + 9/6 + 16/24 + 25/120.</div>
-          <div class="c-tags"><span class="c-tag">for loop</span><span class="c-tag">factorial</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="G4">
-      <div class="c-row">
-        <span class="c-num">G.04</span>
-        <div class="c-body">
-          <div class="c-title">Write a while loop that keeps asking the user for a positive number and sums them, stopping when a negative number is entered. Print the total at the end.</div>
-          <div class="c-hint">Get the first input before the loop. Inside the loop: accumulate sum, then get next input at the bottom. Loop condition: <code>while n >= 0</code>.</div>
-          <div class="c-tags"><span class="c-tag">while loop</span><span class="c-tag">user input</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="G5">
-      <div class="c-row">
-        <span class="c-num">G.05</span>
-        <div class="c-body">
-          <div class="c-title">Write a script that takes a grade (0–100) and prints the letter grade: A(≥90), B(≥80), C(≥70), D(≥60), F(<60). Validate that the input is in range, otherwise print an error.</div>
-          <div class="c-hint">Validation first: <code>if grade < 0 || grade > 100</code>. Then use <code>elseif</code> chains for the letter grades. Use <code>||</code> for logical OR.</div>
-          <div class="c-tags"><span class="c-tag">if/elseif</span><span class="c-tag">logical ops</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part G</div>
-
-    <div class="card visible" data-diff="medium" data-id="G6">
-      <div class="c-row">
-        <span class="c-num">G.06</span>
-        <div class="c-body">
-          <div class="c-title">Simulate a bouncing ball: starts at height 10m, each bounce retains 75% of previous height. Use a while loop to store every height in a vector and plot the trajectory. Stop when height < 0.01m.</div>
-          <div class="c-hint">Initialize <code>h=10; heights=[h];</code>. Loop: <code>h = h*0.75; heights(end+1)=h;</code>. After the loop: <code>plot(heights,'o-')</code>. Label the axes with bounce number and height.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">simulation</span><span class="c-tag">while</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="medium" data-id="G7">
-      <div class="c-row">
-        <span class="c-num">G.07</span>
-        <div class="c-body">
-          <div class="c-title">Write a function <code>quadroots(a,b,c)</code> that takes quadratic coefficients and returns both roots, printing a message if they are complex. Test it on three cases: two real roots, one repeated root, two complex roots.</div>
-          <div class="c-hint">Compute discriminant <code>d = b^2 - 4*a*c</code>. If <code>d < 0</code>: print complex message. If <code>d == 0</code>: repeated root. Save as a separate <code>.m</code> file with the same name as the function.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">function file</span><span class="c-tag">quadratic</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="G8">
-      <div class="c-row">
-        <span class="c-num">G.08</span>
-        <div class="c-body">
-          <div class="c-title">Implement the bisection method from scratch to find the root of <code>f(x) = x³ - x - 2</code> on [1,2] with tolerance 1e-6. Plot how the midpoint estimate converges with each iteration.</div>
-          <div class="c-hint">Each iteration: <code>m=(a+b)/2</code>. If <code>f(a)*f(m) < 0</code>, root is in [a,m], so <code>b=m</code>. Else <code>a=m</code>. Store each <code>m</code> in a vector and plot after the loop.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">bisection</span><span class="c-tag">numerical methods</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="G9">
-      <div class="c-row">
-        <span class="c-num">G.09</span>
-        <div class="c-body">
-          <div class="c-title">Model Fibonacci up to the 30th term with a for loop. On a 1×2 subplot: plot the sequence, then plot consecutive ratios <code>F(n+1)/F(n)</code> with a horizontal line at φ≈1.618. Use <code>yline()</code>.</div>
-          <div class="c-hint">Initialize <code>fib = [1 1]</code>, then loop appending <code>fib(end)+fib(end-1)</code>. Ratios: <code>fib(2:end)./fib(1:end-1)</code>. Watch for integer overflow — switch to <code>double</code> if needed.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">fibonacci</span><span class="c-tag">golden ratio</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="G10">
-      <div class="c-row">
-        <span class="c-num">G.10</span>
-        <div class="c-body">
-          <div class="c-title">Build a user-input function plotter: user types a function string (e.g. <code>'x.^2 - 3'</code>), an x-range as two numbers, and a title — the script plots it automatically using <code>str2func</code>.</div>
-          <div class="c-hint"><code>fstr = input('Function: ','s'); f = str2func(['@(x)' fstr]); xmin=input('xmin: '); xmax=input('xmax: '); fplot(f,[xmin xmax])</code>. The <code>'s'</code> flag in input returns a string.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">str2func</span><span class="c-tag">dynamic plot</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">MATLAB stores the computed value at assignment time, not the formula. Changing a later does NOT update B. Also — A and a are completely different variables.</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART H — GUI
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">PART H</span>
-    <span class="sec-title">GUI / App Designer</span>
-    <span class="diff d-hard">Hard</span>
+<div class="ex-card" data-diff="hard" data-part="A">
+  <div class="margin-note">A.07</div>
+  <div class="ex-meta"><span class="ex-id">A.07</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Truncation trick</div>
+  <div class="ex-body">
+    <p>Evaluate this and explain exactly what it does:</p>
+    <pre>floor(exp(1) * 10^4) / 10^4</pre>
+    <p>Is this <em>rounding</em> or <em>truncating</em>? What would you change to round instead? Write a general formula for truncating any number <code>x</code> to <code>n</code> decimal places.</p>
   </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="standard" data-id="H1">
-      <div class="c-row">
-        <span class="c-num">H.01</span>
-        <div class="c-body">
-          <div class="c-title">Build a simple two-number adder in App Designer: two numeric Edit Fields for input, a Button to trigger the sum, and a third Edit Field to display the result.</div>
-          <div class="c-hint">In the button callback: <code>a = app.Num1EditField.Value; b = app.Num2EditField.Value; app.ResultEditField.Value = a+b;</code>. Labels must follow MATLAB naming rules (no spaces).</div>
-          <div class="c-tags"><span class="c-tag">app designer</span><span class="c-tag">callback</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="standard" data-id="H2">
-      <div class="c-row">
-        <span class="c-num">H.02</span>
-        <div class="c-body">
-          <div class="c-title">Extend the unit converter from the lab: add a <code>Drop Down</code> menu to select the conversion type (m→mm, m→cm, m→inch). The button callback should read the selection and apply the correct formula.</div>
-          <div class="c-hint">Read the dropdown: <code>unit = app.UnitDropDown.Value</code>. Use an <code>if/elseif</code> block inside the callback to choose the multiplier. Set <code>Items</code> property to <code>{'mm','cm','inch'}</code>.</div>
-          <div class="c-tags"><span class="c-tag">dropdown</span><span class="c-tag">callback logic</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="challenge-banner">⚡ Challenge Problems — Part H</div>
-
-    <div class="card visible" data-diff="medium" data-id="H3">
-      <div class="c-row">
-        <span class="c-num">H.03</span>
-        <div class="c-body">
-          <div class="c-title">Build a GUI function plotter: a text field for the user to type a function (e.g. <code>sin(x)</code>), two fields for x-min and x-max, a "Plot" button, and a UIAxes component to display the graph inside the app.</div>
-          <div class="c-hint">In the button callback: <code>f = str2func(['@(x)' app.FuncField.Value]); fplot(app.UIAxes, f, [app.XminField.Value app.XmaxField.Value])</code>. The first argument to <code>fplot</code> can be an axes handle.</div>
-          <div class="c-tags"><span class="c-tag t2">medium</span><span class="c-tag">UIAxes</span><span class="c-tag">str2func</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="hard" data-id="H4">
-      <div class="c-row">
-        <span class="c-num">H.04</span>
-        <div class="c-body">
-          <div class="c-title">Build a quadratic solver GUI: inputs for a, b, c coefficients, a "Solve" button, and a label that displays both roots (formatted nicely, handling complex roots). Also plot the parabola in a UIAxes panel.</div>
-          <div class="c-hint">Compute roots in the callback. Use <code>sprintf('x1 = %.4f, x2 = %.4f', r(1), r(2))</code> for display. For complex roots, <code>isreal(r)</code> returns false — print the complex form separately.</div>
-          <div class="c-tags"><span class="c-tag t3">challenge</span><span class="c-tag">full app</span><span class="c-tag">sprintf</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">floor() always rounds down (toward -infinity). To round normally, use round() instead. exp(1) is just e ≈ 2.71828...</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MEGA CHALLENGES
-═══════════════════════════════════════════════ -->
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-part">BONUS</span>
-    <span class="sec-title">Mega Challenges</span>
-    <span class="diff d-boss">Boss Level</span>
-  </div>
-  <div class="cards">
-
-    <div class="card visible" data-diff="challenge" data-id="X1">
-      <div class="c-row">
-        <span class="c-num">X.01</span>
-        <div class="c-body">
-          <div class="c-title">Simulate a 2D random walk: each step adds a random unit vector. Plot the path with start in green and end in red. Run 100, 1000, and 10000 steps — how does the distance from origin scale?</div>
-          <div class="c-hint">Each step: <code>theta=2*pi*rand; pos=pos+[cos(theta) sin(theta)]</code>. Use <code>cumsum(steps)</code> for efficiency. Distance scales as √N (diffusion law).</div>
-          <div class="c-tags"><span class="c-tag t3">boss</span><span class="c-tag">random walk</span><span class="c-tag">statistics</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="challenge" data-id="X2">
-      <div class="c-row">
-        <span class="c-num">X.02</span>
-        <div class="c-body">
-          <div class="c-title">Implement the trapezoidal rule to numerically integrate <code>e^(-x²)</code> from 0 to 3. Plot the absolute error vs step size on a log-log scale for 10 different step sizes. What is the order of convergence?</div>
-          <div class="c-hint">Reference value: <code>integral(@(x)exp(-x.^2),0,3)</code>. For each step size h: build x, compute y, apply <code>trapz(x,y)</code>. Error should decrease as O(h²), giving slope -2 on log-log plot.</div>
-          <div class="c-tags"><span class="c-tag t3">boss</span><span class="c-tag">numerical integration</span><span class="c-tag">convergence</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="challenge" data-id="X3">
-      <div class="c-row">
-        <span class="c-num">X.03</span>
-        <div class="c-body">
-          <div class="c-title">Recreate the Mandelbrot set: iterate <code>z = z²+c</code> for a 400×400 grid of complex c values. Color each point by how many iterations it takes to diverge (<code>|z|>2</code>). Display with <code>imagesc</code> and a custom colormap.</div>
-          <div class="c-hint">Use <code>meshgrid</code> to build the c grid over [-2,1] × [-1.5,1.5]. Initialize Z=zeros, iteration count matrix M=zeros. Loop up to 100 iterations. Color with <code>colormap(hot)</code>.</div>
-          <div class="c-tags"><span class="c-tag t3">boss</span><span class="c-tag">fractal</span><span class="c-tag">complex iteration</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="challenge" data-id="X4">
-      <div class="c-row">
-        <span class="c-num">X.04</span>
-        <div class="c-body">
-          <div class="c-title">Model predator-prey dynamics using the discrete Lotka-Volterra equations over 200 steps. Plot both populations vs time, then plot prey vs predator as a phase-space trajectory. What shape does the trajectory form?</div>
-          <div class="c-hint">Prey: <code>x(t+1)=x(t)*(1+a-b*y(t))</code>. Predator: <code>y(t+1)=y(t)*(1-c+d*x(t))</code>. Try a=0.1, b=0.02, c=0.1, d=0.01. Phase plot: <code>plot(x,y)</code> — should produce a closed orbit.</div>
-          <div class="c-tags"><span class="c-tag t3">boss</span><span class="c-tag">Lotka-Volterra</span><span class="c-tag">phase space</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-    <div class="card visible" data-diff="challenge" data-id="X5">
-      <div class="c-row">
-        <span class="c-num">X.05</span>
-        <div class="c-body">
-          <div class="c-title">Build a complete GUI app that: accepts a polynomial as coefficient input, plots it, finds and marks its real roots, displays the roots in a list, and has a "Clear" button. All in App Designer.</div>
-          <div class="c-hint">Read coefficients as a string, convert with <code>str2num()</code>. Use <code>roots()</code>, filter real ones with <code>real(r(abs(imag(r))<1e-6))</code>. Mark on UIAxes with scatter. Display in a ListBox component.</div>
-          <div class="c-tags"><span class="c-tag t3">boss</span><span class="c-tag">full GUI</span><span class="c-tag">integration</span></div>
-        </div>
-        <div class="c-check" onclick="toggle(this)"></div>
-      </div>
-    </div>
-
-  </div>
+</div>
 </div>
 
-<footer>
-  CSE001 · Introduction to Computers and Programming · Zagazig University · Spring 2026
-</footer>
+<!-- ═══ PART B ═══ -->
+<div class="section" data-part="B">
+<div class="sec-header">
+  <span class="sec-label">Part B</span>
+  <span class="sec-title">Complex Numbers</span>
+  <span class="sec-count">5 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="B">
+  <div class="margin-note">B.01</div>
+  <div class="ex-meta"><span class="ex-id">B.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">(1+i)⁴ and its parts</div>
+  <div class="ex-body">
+    <p>Compute <code>(1+1i)^4</code> in MATLAB. Extract real and imaginary parts using <code>real()</code> and <code>imag()</code>.</p>
+    <p style="margin-top:8px">Is the result purely real? Verify manually by computing (1+i)² first, then squaring again.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Write imaginary numbers as 1i in MATLAB (not i alone — that might already be a variable). (1+i)² = 2i, so (1+i)⁴ = (2i)² = ?</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="B">
+  <div class="margin-note">B.02</div>
+  <div class="ex-meta"><span class="ex-id">B.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Polar form of 5+3i</div>
+  <div class="ex-body">
+    <p>For <code>a = 5 + 3i</code>, find:</p>
+    <ul>
+      <li>Magnitude using <code>abs()</code></li>
+      <li>Angle in radians using <code>angle()</code></li>
+      <li>Angle in degrees (convert manually)</li>
+      <li>Real and imaginary parts</li>
+    </ul>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">abs() = distance from origin: sqrt(real² + imag²). angle() = atan2(imag, real) in radians.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="B">
+  <div class="margin-note">B.03</div>
+  <div class="ex-meta"><span class="ex-id">B.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">z1=3+4i, z2=1−2i arithmetic</div>
+  <div class="ex-body">
+    <p>Compute: z1+z2, z1*z2, z1/z2, z1². Show the manual calculation for division (use the conjugate trick).</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">For division: multiply top and bottom by conj(z2) = 1+2i. The denominator becomes |z2|² which is real. MATLAB has conj() built-in.</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="B">
+  <div class="margin-note">B.04</div>
+  <div class="ex-meta"><span class="ex-id">B.04</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Euler's identity — floating point caveat</div>
+  <div class="ex-body">
+    <p>Euler's identity says e^(iπ)+1 = 0. Type <code>exp(1i*pi) + 1</code>. Is the result exactly zero?</p>
+    <p style="margin-top:8px">Explain why not. Then write a proper numerical equality check using <code>abs()</code> and a tolerance.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">The tiny leftover (~1.2e-16) is machine epsilon — floating point can't represent pi exactly. Never use == to compare floats. Use abs(result) &lt; 1e-10 instead.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="B">
+  <div class="margin-note">B.05</div>
+  <div class="ex-meta"><span class="ex-id">B.05</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Reconstruct from polar form</div>
+  <div class="ex-body">
+    <p>A complex number has magnitude r=5 and angle θ=π/3. Reconstruct it in rectangular form using <code>r * exp(1i * theta)</code>. Then verify by extracting abs() and angle() back — do you get r and θ?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Euler's formula: r·e^(iθ) = r·cos(θ) + i·r·sin(θ). Also works: r*cos(theta) + 1i*r*sin(theta). Both give the same thing.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ PART C ═══ -->
+<div class="section" data-part="C">
+<div class="sec-header">
+  <span class="sec-label">Part C</span>
+  <span class="sec-title">Matrices</span>
+  <span class="sec-count">8 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="C">
+  <div class="margin-note">C.01</div>
+  <div class="ex-meta"><span class="ex-id">C.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Vectors, indexing, colon operator</div>
+  <div class="ex-body">
+    <p>1. Create <code>A = [0 -1 5 10]</code> and access the 3rd element.<br>
+    2. Create <code>B = 0:0.5:5</code>. What is its length? Use <code>length(B)</code> to confirm.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">MATLAB indexes from 1 (not 0!). A(3) gives the 3rd element. Length of a range: (max − min) / step + 1.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="C">
+  <div class="margin-note">C.02</div>
+  <div class="ex-meta"><span class="ex-id">C.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Matrix indexing and slicing</div>
+  <div class="ex-body">
+    <p>Create: <code>A = [1 2 3 4; 5 6 7 8; 9 10 11 12; 13 14 15 16]</code></p>
+    <p>Extract: element (3,2) — entire row 2 — entire column 3 — top-left 2×2 block</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">The colon : means "all". A(2,:) = row 2 all columns. A(:,3) = all rows col 3. A(1:2, 1:2) = top-left 2×2.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="C">
+  <div class="margin-note">C.03</div>
+  <div class="ex-meta"><span class="ex-id">C.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Build matrices from vectors</div>
+  <div class="ex-body">
+    <p>Given: <code>a=[7 2 -3 1 0]</code>, <code>b=[-3 10 0 7 -2]</code>, <code>c=[1 0 4 -6 5]</code></p>
+    <p>Build a 3×5 matrix (rows) and a 5×3 matrix (columns). Confirm with <code>size()</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Rows: [a; b; c]. Columns: [a' b' c'] — the apostrophe transposes a row vector into a column.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="C">
+  <div class="margin-note">C.04</div>
+  <div class="ex-meta"><span class="ex-id">C.04</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Inverse and determinant</div>
+  <div class="ex-body">
+    <p>For <code>B = [1 3 3; 1 4 3; 1 3 4]</code>, compute <code>det(B)</code> and <code>inv(B)</code>. Then verify by computing <code>B * inv(B)</code> — what should you get?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">B * inv(B) should give the identity matrix eye(3). You'll likely see tiny floating-point errors like 1e-15 — use round() to clean it up.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="C">
+  <div class="margin-note">C.05</div>
+  <div class="ex-meta"><span class="ex-id">C.05</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Element-wise vs matrix operations</div>
+  <div class="ex-body">
+    <p>For <code>A = [1 2 3; 4 5 6; 7 8 9]</code> and <code>B = [1 3 3; 1 4 3; 1 3 4]</code>:</p>
+    <pre>A ./ B    % element-wise division
+A .* B    % element-wise multiply
+A .^ 2    % square each element</pre>
+    <p>Now try <code>A ^ 2</code> (no dot). Different result?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">The dot makes it element-wise. Without the dot, ^ is matrix power (A*A). Totally different results. This is one of the most common MATLAB bugs!</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="C">
+  <div class="margin-note">C.06</div>
+  <div class="ex-meta"><span class="ex-id">C.06</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Verify matrix algebra properties</div>
+  <div class="ex-body">
+    <p>Use <code>randi(10, 3, 3)</code> to generate 3 random matrices A, B, C. Numerically verify:</p>
+    <ul>
+      <li>A+B == B+A (commutative?)</li>
+      <li>A+(B+C) == (A+B)+C (associative?)</li>
+      <li>5*(A+C) == 5*A + 5*C (distributive?)</li>
+    </ul>
+    <p style="margin-top:8px">Use <code>isequal()</code>. Then check: is A*B == B*A?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">isequal() returns 1 (true) or 0 (false). Addition is commutative for matrices but multiplication generally is NOT — A*B ≠ B*A.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="C">
+  <div class="margin-note">C.07</div>
+  <div class="ex-meta"><span class="ex-id">C.07</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Upper triangular with identity diagonal (no loops)</div>
+  <div class="ex-body">
+    <p>Create <code>A = randi(10,5,5)</code>. Produce a new matrix where:</p>
+    <ul>
+      <li>All elements below the diagonal → zero</li>
+      <li>Diagonal → all ones</li>
+      <li>Above diagonal → kept from A</li>
+    </ul>
+    <p style="margin-top:8px">Do it in 1–2 lines. Use <code>triu()</code> and <code>eye()</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">triu(A, 1) keeps only strictly above the diagonal (k=1 skips the diagonal itself). Then add eye(5) to put ones back on the diagonal.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="C">
+  <div class="margin-note">C.08</div>
+  <div class="ex-meta"><span class="ex-id">C.08</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Transpose properties — reversal rule</div>
+  <div class="ex-body">
+    <p>For random 3×3 matrices A and B, verify:</p>
+    <ul>
+      <li>(AB)ᵀ = BᵀAᵀ &nbsp;(note the reversed order!)</li>
+      <li>(A+B)ᵀ = Aᵀ + Bᵀ</li>
+    </ul>
+    <p style="margin-top:8px">Also confirm (AB)ᵀ ≠ AᵀBᵀ. Use <code>norm(X − Y) &lt; 1e-10</code> for equality checks.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Apostrophe ' transposes. norm() gives the "size" of the difference — near zero means equal. The order reversal in (AB)' = B'A' is the reversal rule — same applies to inverses.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ PART D ═══ -->
+<div class="section" data-part="D">
+<div class="sec-header">
+  <span class="sec-label">Part D</span>
+  <span class="sec-title">Matrix Applications</span>
+  <span class="sec-count">5 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="D">
+  <div class="margin-note">D.01</div>
+  <div class="ex-meta"><span class="ex-id">D.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Polynomial evaluation and roots</div>
+  <div class="ex-body">
+    <p>For <code>y = x⁴ + 3x² + 5x − 6</code>:</p>
+    <ol>
+      <li>Represent as a coefficient vector (don't forget the zero for x³!)</li>
+      <li>Evaluate at x=3 and at <code>x = [1 3 4 5 6]</code> using <code>polyval()</code></li>
+      <li>Find all roots using <code>roots()</code> — how many are real?</li>
+    </ol>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">No x³ term → its coefficient is 0. Vector: [1 0 3 5 -6]. If you forget the zero, MATLAB reads a totally different polynomial!</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="D">
+  <div class="margin-note">D.02</div>
+  <div class="ex-meta"><span class="ex-id">D.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Build polynomial from roots</div>
+  <div class="ex-body">
+    <p>Use <code>poly()</code> to build a polynomial with roots x=−3 and x=2. What are the coefficients? Verify with <code>roots()</code> — do you get −3 and 2 back?</p>
+    <p style="margin-top:8px">Repeat for roots x=0, −1, 1.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">poly([r1, r2]) returns coefficients of (x−r1)(x−r2). Always returns monic (leading coeff = 1).</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="D">
+  <div class="margin-note">D.03</div>
+  <div class="ex-meta"><span class="ex-id">D.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Solve a 3×3 linear system</div>
+  <div class="ex-body">
+    <p>Solve: x−4y+3z=11, &nbsp; 3x+y+2z=1, &nbsp; x+5y−z=4</p>
+    <p style="margin-top:8px">Use both <code>A\b</code> and <code>inv(A)*b</code>. Verify with <code>A*x − b</code> (should be ≈ zero).</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Build matrix A from the coefficients, column vector b from the right-hand sides. Backslash A\b is preferred — it's more numerically stable than inv(A).</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="D">
+  <div class="margin-note">D.04</div>
+  <div class="ex-meta"><span class="ex-id">D.04</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Vectorized polynomial evaluation</div>
+  <div class="ex-body">
+    <p>For <code>y = x³ − 2x² + x</code>, evaluate at <code>x = [-2 -1 0 1 2 3 4]</code> without a loop — use element-wise operators.</p>
+    <p style="margin-top:8px">Verify using <code>polyval()</code> with the coefficient vector.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use x.^3 and x.^2 (dot!) so each element is independent. Without the dot, x^3 tries matrix exponentiation and fails on a vector.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="D">
+  <div class="margin-note">D.05</div>
+  <div class="ex-meta"><span class="ex-id">D.05</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Circuit analysis + conditioning</div>
+  <div class="ex-body">
+    <p>A circuit gives: 2I₁+I₂=10, &nbsp; I₁−3I₂+2I₃=5, &nbsp; I₂+4I₃=8. Solve for the currents.</p>
+    <p style="margin-top:8px">Perturb b by +0.01 and re-solve. How much does the solution change? Check <code>cond(A)</code> — is this well-conditioned?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">cond(A) near 1 = well conditioned. cond >> 1000 = ill-conditioned (small input errors → big output errors). Compare solutions using norm(x_new − x_old).</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ PART E ═══ -->
+<div class="section" data-part="E">
+<div class="sec-header">
+  <span class="sec-label">Part E</span>
+  <span class="sec-title">Plotting</span>
+  <span class="sec-count">8 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="E">
+  <div class="margin-note">E.01</div>
+  <div class="ex-meta"><span class="ex-id">E.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Basic plot with labels</div>
+  <div class="ex-body">
+    <p>Plot <code>s = 5·sin(3t+2) + 15t − 1</code> for <code>t = 0:0.1:5</code>. Add xlabel "time", ylabel "speed", title, and grid. Repeat with <code>t = 0:5</code> (integers) — how does it look different and why?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Labels MUST come after plot(). With only 6 points the sine oscillations are missed — you get a jagged line. Fine steps are needed to capture fast-varying functions.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="E">
+  <div class="margin-note">E.02</div>
+  <div class="ex-meta"><span class="ex-id">E.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Capacitor charging: plot vs fplot</div>
+  <div class="ex-body">
+    <p>For <code>v = 10·(1 − e^(−0.2t))</code>, t from 0 to 50:</p>
+    <ol>
+      <li>Use <code>plot()</code> with step = 5s</li>
+      <li>Use <code>fplot()</code> with an anonymous function</li>
+    </ol>
+    <p style="margin-top:8px">Open each in a separate figure. Which looks smoother? What voltage does the capacitor approach?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">fplot auto-samples more points in regions of rapid change. The capacitor approaches 10V. Use figure before the second plot to avoid overwriting.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="E">
+  <div class="margin-note">E.03</div>
+  <div class="ex-meta"><span class="ex-id">E.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Two functions, one figure + legend</div>
+  <div class="ex-body">
+    <p>Plot <code>cos(2t)</code> (blue) and <code>sin(t)/t</code> (red) on the same figure over t from 0.01 to 4π. Use <code>hold on</code>, add a legend. Why start at 0.01 instead of 0?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">sin(0)/0 = 0/0 = NaN → gap in plot. Starting at 0.01 avoids this. The mathematical limit as t→0 of sin(t)/t is actually 1. Also use ./ for element-wise division.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="E">
+  <div class="margin-note">E.04</div>
+  <div class="ex-meta"><span class="ex-id">E.04</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">2×2 subplot — Pythagorean identity</div>
+  <div class="ex-body">
+    <p>In a 2×2 subplot, over <code>x = linspace(0, 2*pi)</code> plot:</p>
+    <ul>
+      <li>sin(x)</li>
+      <li>cos(x)</li>
+      <li>sin(x)·cos(x)</li>
+      <li>sin²(x) + cos²(x)</li>
+    </ul>
+    <p style="margin-top:8px">What's special about the 4th subplot?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">The 4th plot is a flat line at y=1 — that's the Pythagorean trig identity: sin²+cos²=1 for all x. Use subplot(2,2,n) where n is the panel number.</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="E">
+  <div class="margin-note">E.05</div>
+  <div class="ex-meta"><span class="ex-id">E.05</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Sampling rate matters</div>
+  <div class="ex-body">
+    <p>Plot <code>f(x) = 5·e²·sin(0.4x)·cos(4x)</code> over [−20, 30] using:</p>
+    <ul>
+      <li><code>plot</code> with 100 points — correct?</li>
+      <li><code>fplot</code> — adaptive sampling</li>
+      <li><code>plot</code> with 1000 points — better?</li>
+    </ul>
+    <p style="margin-top:8px">Why does the 100-point version look wrong?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">The cos(4x) term oscillates fast — 100 points aren't enough (aliasing). fplot is adaptive. For plot() to match, you need way more points.</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="E">
+  <div class="margin-note">E.06</div>
+  <div class="ex-meta"><span class="ex-id">E.06</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Annotated parabola: roots and vertex</div>
+  <div class="ex-body">
+    <p>Plot <code>y = −x² + 6x − 5</code>. On the same figure mark:</p>
+    <ul>
+      <li>The two roots as red circles (use <code>roots()</code>)</li>
+      <li>The vertex as a green star</li>
+      <li>Axes centered at origin (use <code>gca</code> properties)</li>
+    </ul>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Vertex x = −b/(2a) = 3, substitute back to get y. ax = gca; ax.XAxisLocation='origin'; ax.YAxisLocation='origin'; ax.Box='off' for centered axes.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="E">
+  <div class="margin-note">E.07</div>
+  <div class="ex-meta"><span class="ex-id">E.07</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Animate a travelling sine wave</div>
+  <div class="ex-body">
+    <p>Create a loop that plots <code>sin(x − k)</code> for k = 0:0.1:4π. Each frame should update with <code>drawnow</code>. Fix axis limits to prevent jumping. What does this animate?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">drawnow forces MATLAB to render each frame immediately — without it you'd only see the final frame. Use axis([0 2*pi -1.5 1.5]) inside the loop. Add pause(0.02) for ~50fps.</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="E">
+  <div class="margin-note">E.08</div>
+  <div class="ex-meta"><span class="ex-id">E.08</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">3D ripple surface</div>
+  <div class="ex-body">
+    <p>Plot <code>f(x,y) = sin(√(x²+y²))</code> over [−10,10]×[−10,10] using <code>meshgrid</code>, <code>surf</code>, and <code>shading interp</code>. Add a colorbar and colormap.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use [X,Y] = meshgrid(-10:0.3:10). Then Z = sin(sqrt(X.^2 + Y.^2)) — dot operators are essential here since X and Y are matrices. Try colormap('parula') or 'hot'.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ PART F ═══ -->
+<div class="section" data-part="F">
+<div class="sec-header">
+  <span class="sec-label">Part F</span>
+  <span class="sec-title">Symbolic Processing</span>
+  <span class="sec-count">9 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="F">
+  <div class="margin-note">F.01</div>
+  <div class="ex-meta"><span class="ex-id">F.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">expand() and factor()</div>
+  <div class="ex-body">
+    <p>Declare <code>syms x y</code>. Expand <code>x*(x+y)^2</code> and <code>sin(x+y)</code>. Factor <code>x^2 + 4*x + 4</code>. What identity does the sin expansion give?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">You must declare symbols first with syms — otherwise MATLAB treats them as regular variables. sin(x+y) expansion gives the angle-sum identity.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="F">
+  <div class="margin-note">F.02</div>
+  <div class="ex-meta"><span class="ex-id">F.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">simplify() + poly conversion</div>
+  <div class="ex-body">
+    <p>Simplify <code>(x^3+2x^2+5x+10)/(x^2+5)</code>. Then:</p>
+    <ul>
+      <li><code>poly2sym([1 0 -4])</code> → what polynomial?</li>
+      <li><code>sym2poly(x^2 - 4)</code> → what vector?</li>
+    </ul>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">simplify() reduces the fraction by factoring. poly2sym and sym2poly are bridges between symbolic and numeric — useful for feeding symbolic results into roots().</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="F">
+  <div class="margin-note">F.03</div>
+  <div class="ex-meta"><span class="ex-id">F.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">solve() vs roots() for x⁴+2x²+x=5</div>
+  <div class="ex-body">
+    <p>Find all roots of x⁴+2x²+x−5=0 using both <code>solve()</code> (symbolic) and <code>roots()</code> (numeric). Do they agree? How many roots are real?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">In solve(), use == not = for equations. Wrap result in double() to get numbers. Don't forget the missing x³ zero in roots(): [1 0 2 1 -5].</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="F">
+  <div class="margin-note">F.04</div>
+  <div class="ex-meta"><span class="ex-id">F.04</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Partial derivatives + substitution</div>
+  <div class="ex-body">
+    <p>For <code>f = x*y + sin(x*y)</code>, compute ∂f/∂x and ∂²f/∂x². Then evaluate both at x=1, y=2 using <code>subs()</code> and <code>double()</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">diff(f) defaults to first alphabetical variable. Use diff(f, y) for ∂f/∂y. subs(expr, [x y], [1 2]) substitutes both at once.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="F">
+  <div class="margin-note">F.05</div>
+  <div class="ex-meta"><span class="ex-id">F.05</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Indefinite and definite integrals</div>
+  <div class="ex-body">
+    <p>Using <code>int()</code> compute: ∫2x dx, ∫x² dx from 2 to 5, and ∫xy² dy from 0 to 5 (x is a constant).</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">MATLAB's int() omits the +C. For definite: int(expr, a, b). To integrate w.r.t. y: int(expr, y, a, b). Treats x as a symbolic parameter.</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="F">
+  <div class="margin-note">F.06</div>
+  <div class="ex-meta"><span class="ex-id">F.06</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Solve ODE with dsolve()</div>
+  <div class="ex-body">
+    <p>Solve y'' + y' + y = 5x with y(0)=0, y'(0)=0 using <code>dsolve()</code>. What are the two parts of the solution? What happens as x→∞?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Declare syms y(x), Dy = diff(y,x). The solution has a decaying oscillation (e^(−x/2) terms) that dies out, leaving the particular solution 5x−5 for large x.</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="F">
+  <div class="margin-note">F.07</div>
+  <div class="ex-meta"><span class="ex-id">F.07</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Intersection of two circles</div>
+  <div class="ex-body">
+    <p>Find where (x−3)²+(y−5)²=4 and (x−5)²+(y−3)²=8 intersect using symbolic <code>solve()</code>. Plot both circles and mark the intersection points. Use <code>axis equal</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Plot circles parametrically: x = cx + r*cos(t), y = cy + r*sin(t). axis equal is essential — without it circles appear as ellipses.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="F">
+  <div class="margin-note">F.08</div>
+  <div class="ex-meta"><span class="ex-id">F.08</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Differentiate x^x symbolically</div>
+  <div class="ex-body">
+    <p>Use <code>diff(x^x)</code>. What does MATLAB return? Evaluate at x=2 and verify using a finite difference: <code>(f(2.0001) − f(2)) / 0.0001</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">d/dx(x^x) = x^x * (ln(x) + 1). MATLAB derives this automatically using chain rule on x^x = e^(x*ln(x)). Both symbolic and finite-diff should be close.</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="F">
+  <div class="margin-note">F.09</div>
+  <div class="ex-meta"><span class="ex-id">F.09</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">Area between sin and cos over one period</div>
+  <div class="ex-body">
+    <p>Find the total area between sin(x) and cos(x) over [0, 2π]. You need to: find intersections, integrate |sin−cos| between each pair, sum. What's the total area?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">They intersect at π/4 and 5π/4 in [0, 2π]. Split the integral at each crossing and integrate (sin−cos) where sin > cos and vice versa. Total = 4√2 ≈ 5.657.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ PART G ═══ -->
+<div class="section" data-part="G">
+<div class="sec-header">
+  <span class="sec-label">Part G</span>
+  <span class="sec-title">Programming</span>
+  <span class="sec-count">10 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="G">
+  <div class="margin-note">G.01</div>
+  <div class="ex-meta"><span class="ex-id">G.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Script with input + if validation</div>
+  <div class="ex-body">
+    <p>Write a script: ask user for number of sine cycles, validate it's positive, then plot sin(x). If ≤ 0, print an error message instead.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Start with clear; clc; close all;. Use n = input('Enter cycles: '). Plot over 0:0.01:2*pi*n. Use sprintf() to put n in the title dynamically.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="G">
+  <div class="margin-note">G.02</div>
+  <div class="ex-meta"><span class="ex-id">G.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Piecewise function with if/elseif/else</div>
+  <div class="ex-body">
+    <p>Write a script that reads x and evaluates:</p>
+    <pre>f(x) = sqrt(x² + 1)     if x &lt; 0
+       3x + 1             if 0 ≤ x ≤ 10
+       9·sin(5x−5) + 31   if x &gt; 10</pre>
+    <p>Test with x = −2, 5, 15.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use if / elseif / else / end. Once a condition is true the rest are skipped. x=0 falls into the second branch (0 ≤ x ≤ 10).</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="G">
+  <div class="margin-note">G.03</div>
+  <div class="ex-meta"><span class="ex-id">G.03</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">For loop: Σ k²/k! for k=1..5</div>
+  <div class="ex-body">
+    <p>Use a for loop to compute the sum. Print each term and the running total using <code>fprintf()</code>. What's the final answer?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Initialize s = 0 before the loop. Use factorial(k) for k!. fprintf('k=%d: term=%.4f, sum=%.4f\n', k, term, s). Final answer: s ≈ 5.375</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="G">
+  <div class="margin-note">G.04</div>
+  <div class="ex-meta"><span class="ex-id">G.04</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">While loop: accumulate until negative</div>
+  <div class="ex-body">
+    <p>Keep asking the user for numbers and add them up. Stop when a negative number is entered. Display the total. The negative number should NOT be added.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">This uses the "priming read" pattern: call input() once BEFORE the while loop, then again at the END of the loop body to get the next value.</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="G">
+  <div class="margin-note">G.05</div>
+  <div class="ex-meta"><span class="ex-id">G.05</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Grade calculator with validation</div>
+  <div class="ex-body">
+    <p>Read a grade 0–100. Validate it's in range first. Then print A/B/C/D/F. Use logical operators <code>||</code> and <code>&amp;&amp;</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">|| is OR, && is AND. Validate first: if g &lt; 0 || g &gt; 100. Then: elseif g >= 90 → A, elseif g >= 80 → B, etc. Order matters!</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="G">
+  <div class="margin-note">G.06</div>
+  <div class="ex-meta"><span class="ex-id">G.06</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Bouncing ball simulation</div>
+  <div class="ex-body">
+    <p>Ball drops from 10m, bounces to 75% of previous height each time. Simulate until height &lt; 0.01m using a while loop. Store all heights and plot them. How many bounces?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">heights(end+1) = h appends dynamically. About 13 bounces. Analytically: 10 * 0.75^n &lt; 0.01 → n &gt; log(0.001)/log(0.75).</div>
+</div>
+
+<div class="ex-card" data-diff="medium" data-part="G">
+  <div class="margin-note">G.07</div>
+  <div class="ex-meta"><span class="ex-id">G.07</span><span class="diff-tag medium">medium</span></div>
+  <div class="ex-title">Write a function: quadroots(a,b,c)</div>
+  <div class="ex-body">
+    <p>Write a function file <code>quadroots.m</code> that takes a,b,c and returns both roots. Handle all three cases: two real, repeated, complex. Print a message for each.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Filename MUST match function name: quadroots.m. Discriminant: d = b^2 − 4*a*c. If d &lt; 0, sqrt(d) automatically returns complex. Return [r1, r2].</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="G">
+  <div class="margin-note">G.08</div>
+  <div class="ex-meta"><span class="ex-id">G.08</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Bisection method for x³−x−2=0</div>
+  <div class="ex-body">
+    <p>Implement bisection on [1,2] with tolerance 1e-6. Store each midpoint estimate and plot the convergence. How many iterations?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Check: f(a)*f(m) &lt; 0 → root in [a,m], else in [m,b]. Loop while (b−a)/2 &gt; tol. About 20 iterations. True root ≈ 1.5214.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="G">
+  <div class="margin-note">G.09</div>
+  <div class="ex-meta"><span class="ex-id">G.09</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">Fibonacci + golden ratio convergence</div>
+  <div class="ex-body">
+    <p>Compute the first 30 Fibonacci numbers with a for loop. Plot the sequence AND the ratio F(n+1)/F(n). What value do the ratios converge to?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Ratios converge to the golden ratio φ = (1+√5)/2 ≈ 1.6180. Add a yline() reference. Use subplot(1,2,1) and subplot(1,2,2) for side-by-side.</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="G">
+  <div class="margin-note">G.10</div>
+  <div class="ex-meta"><span class="ex-id">G.10</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">User-input function plotter</div>
+  <div class="ex-body">
+    <p>Script: ask user for a function string (e.g. "x.^2 − 3"), xmin, xmax, and a title. Convert with <code>str2func()</code> and plot. What input flag returns raw text without evaluating?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">input('prompt', 's') returns text without evaluating it. Then str2func(['@(x) ' fstr]) builds a function handle. Remind users to write x.^2 not x^2.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ PART H ═══ -->
+<div class="section" data-part="H">
+<div class="sec-header">
+  <span class="sec-label">Part H</span>
+  <span class="sec-title">GUI / App Designer</span>
+  <span class="sec-count">4 exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="standard" data-part="H">
+  <div class="margin-note">H.01</div>
+  <div class="ex-meta"><span class="ex-id">H.01</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Two-number adder</div>
+  <div class="ex-body">
+    <p>In App Designer: two numeric input fields, an "Add" button, a result field. Write the button callback to add the two values. What property holds the numeric value of an EditField?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use app.FieldName.Value to read/write. Set result field Editable: off. All component names in code must be valid MATLAB identifiers (no spaces).</div>
+</div>
+
+<div class="ex-card" data-diff="standard" data-part="H">
+  <div class="margin-note">H.02</div>
+  <div class="ex-meta"><span class="ex-id">H.02</span><span class="diff-tag standard">easy</span></div>
+  <div class="ex-title">Unit converter with DropDown</div>
+  <div class="ex-body">
+    <p>App: convert meters to mm, cm, or inches based on a DropDown. Use <code>strcmp()</code> to check selection. Why can't you use <code>==</code> for strings here?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">strcmp() compares strings and returns 1/0. == on strings compares char by char and returns a logical array, not a single true/false. Set DropDown Items: {'mm','cm','inch'}.</div>
+</div>
+
+<div class="ex-card" data-diff="hard" data-part="H">
+  <div class="margin-note">H.03</div>
+  <div class="ex-meta"><span class="ex-id">H.03</span><span class="diff-tag hard">hard</span></div>
+  <div class="ex-title">GUI function plotter with UIAxes</div>
+  <div class="ex-body">
+    <p>App: user types a function string, sets xmin/xmax, clicks Plot, sees graph in UIAxes. Wrap in try/catch so bad input shows a dialog instead of crashing.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Pass app.UIAxes as the first argument to fplot(), grid(), title(). Use try/catch err, then uialert(app.UIFigure, err.message, 'Error').</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="H">
+  <div class="margin-note">H.04</div>
+  <div class="ex-meta"><span class="ex-id">H.04</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">Quadratic solver GUI with plot</div>
+  <div class="ex-body">
+    <p>App Designer: inputs for a,b,c. On solve: display roots (handle complex gracefully), plot the parabola in UIAxes, mark real roots. Use <code>isreal()</code> to detect complex roots.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">isreal(r) returns true only if ALL elements have zero imaginary part. For complex roots format with real() and imag(). Use arrayfun() + sprintf() to convert roots to display strings.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ═══ BONUS X ═══ -->
+<div class="section" data-part="X">
+<div class="sec-header">
+  <span class="sec-label">Bonus 🔥</span>
+  <span class="sec-title">Mega Challenges</span>
+  <span class="sec-count">5 boss exercises</span>
+</div>
+<div class="ex-list">
+
+<div class="ex-card" data-diff="challenge" data-part="X">
+  <div class="margin-note">X.01</div>
+  <div class="ex-meta"><span class="ex-id">X.01</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">2D Random Walk</div>
+  <div class="ex-body">
+    <p>Simulate 1000 steps of a 2D random walk (each step is a unit vector in a random direction). Plot the path, mark start (green) and end (red). Then verify: distance from origin scales as √N for N = 100, 1000, 10000.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use cumsum() to build positions from steps. angles = 2*pi*rand(N,1); steps = [cos(angles) sin(angles)]; path = [0 0; cumsum(steps)]. This is the diffusion law!</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="X">
+  <div class="margin-note">X.02</div>
+  <div class="ex-meta"><span class="ex-id">X.02</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">Numerical integration convergence</div>
+  <div class="ex-body">
+    <p>Integrate e^(−x²) from 0 to 3 using the trapezoidal rule with step sizes from <code>logspace(-3, 0, 20)</code>. Compare to <code>integral()</code> exact value. Plot error vs h on log-log scale. What's the slope?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use trapz(x, y) for trapezoidal integration. Slope on log-log ≈ 2 confirms O(h²) convergence. loglog() makes the plot automatically.</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="X">
+  <div class="margin-note">X.03</div>
+  <div class="ex-meta"><span class="ex-id">X.03</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">Mandelbrot Set</div>
+  <div class="ex-body">
+    <p>For each complex c in a grid over [−2,1]×[−1.5,1.5], iterate z → z²+c and count iterations before |z|>2. Color each pixel by count. Use <code>imagesc</code> and <code>colormap</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">Use meshgrid for c values. Use a logical mask: only update points where abs(Z) &lt;= 2. M(mask) += 1 to count. Points that never diverge = Mandelbrot set (dark region).</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="X">
+  <div class="margin-note">X.04</div>
+  <div class="ex-meta"><span class="ex-id">X.04</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">Predator-Prey (Lotka-Volterra)</div>
+  <div class="ex-body">
+    <p>Simulate with 40 prey and 9 predators. Plot populations vs time AND the phase-space trajectory (prey on x-axis, predators on y). What shape does the phase plot make?</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">x(t+1) = x(t)*(1+a-b*y(t)), y(t+1) = y(t)*(1-c+d*x(t)). Phase plot → closed orbit = cyclic predator-prey dynamics.</div>
+</div>
+
+<div class="ex-card" data-diff="challenge" data-part="X">
+  <div class="margin-note">X.05</div>
+  <div class="ex-meta"><span class="ex-id">X.05</span><span class="diff-tag challenge">challenge 💀</span></div>
+  <div class="ex-title">Full Polynomial Solver GUI</div>
+  <div class="ex-body">
+    <p>App Designer: user types polynomial coefficients (e.g. "1 0 -5 4"), click Solve → display all real roots in a ListBox, plot the polynomial with roots marked. Use <code>str2num()</code> and filter real roots with <code>abs(imag(r)) &lt; 1e-8</code>.</p>
+  </div>
+  <button class="hint-toggle" onclick="toggleHint(this)">💡 hint</button>
+  <div class="hint-box">str2num() (not str2double) handles vectors. arrayfun + sprintf converts roots to strings. linspace the plot range around the real roots. ListBox.Items takes a cell array.</div>
+</div>
+
+</div>
+</div>
+
+<footer>made for <em>Prep Engineering students</em> · Zagazig University · by Ahmed Yasser · if something's wrong dm me</footer>
 
 </div><!-- /wrapper -->
 
 <script>
-const STORE_KEY = 'matlab_cse001_done';
-let done = new Set(JSON.parse(localStorage.getItem(STORE_KEY) || '[]'));
-
-// Count total visible
-function countVisible() {
-  return document.querySelectorAll('.card.visible').length;
+function toggleHint(btn) {
+  const box = btn.nextElementSibling;
+  box.classList.toggle('open');
+  btn.textContent = box.classList.contains('open') ? '🙈 hide' : '💡 hint';
 }
 
-function updateProgress() {
-  const total = document.querySelectorAll('.card').length;
-  const visCards = document.querySelectorAll('.card.visible');
-  const visTotal = visCards.length;
-  const visDone = [...visCards].filter(c => c.classList.contains('done')).length;
-  const pct = visTotal > 0 ? (visDone / visTotal) * 100 : 0;
-  document.getElementById('pFill').style.width = pct + '%';
-  document.getElementById('pText').textContent = visDone + ' / ' + visTotal;
-  document.getElementById('totalCount').textContent = total;
-}
+let activePart = 'all';
+let activeDiff = 'all';
 
-function toggle(el) {
-  const card = el.closest('.card');
-  const id = card.dataset.id;
-  if (done.has(id)) {
-    done.delete(id);
-    el.classList.remove('checked');
-    card.classList.remove('done');
-  } else {
-    done.add(id);
-    el.classList.add('checked');
-    card.classList.add('done');
-  }
-  localStorage.setItem(STORE_KEY, JSON.stringify([...done]));
-  updateProgress();
-}
-
-function filter(type, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+function filterPart(part, btn) {
+  activePart = part;
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.card').forEach(card => {
-    const d = card.dataset.diff;
-    if (type === 'all' || d === type) {
-      card.classList.add('visible');
-    } else {
-      card.classList.remove('visible');
-    }
-  });
-  updateProgress();
+  applyFilters();
 }
 
-// Restore state
-document.querySelectorAll('.card').forEach(card => {
-  if (done.has(card.dataset.id)) {
-    card.classList.add('done');
-    card.querySelector('.c-check').classList.add('checked');
+function filterDiff(diff, btn) {
+  activeDiff = (activeDiff === diff) ? 'all' : diff; // toggle off if same
+  document.querySelectorAll('.diff-btn').forEach(b => {
+    b.classList.remove('on-easy','on-med','on-hard','on-boss');
+  });
+  if (activeDiff !== 'all') {
+    const cls = {standard:'on-easy', medium:'on-med', hard:'on-hard', challenge:'on-boss'}[activeDiff];
+    btn.classList.add(cls);
   }
-});
+  applyFilters();
+}
 
-updateProgress();
+function applyFilters() {
+  let total = 0;
+  document.querySelectorAll('.section').forEach(sec => {
+    let vis = 0;
+    sec.querySelectorAll('.ex-card').forEach(card => {
+      const okPart = activePart === 'all' || card.dataset.part === activePart;
+      const okDiff = activeDiff === 'all' || card.dataset.diff === activeDiff;
+      const show = okPart && okDiff;
+      card.style.display = show ? '' : 'none';
+      if (show) vis++;
+    });
+    sec.style.display = vis > 0 ? '' : 'none';
+    total += vis;
+  });
+  document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
+}
 </script>
 </body>
 </html>
